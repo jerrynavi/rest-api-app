@@ -25,6 +25,7 @@ export class UserService {
     ): Promise<IPaginatedModel> => {
         let order: boolean = false;
         const limit: number = (perPage) ? Number(perPage) : 25;
+        const sortBy = (sortField) ? sortField : "id";
         if (sortOrderMode) {
             switch (sortOrderMode) {
                 case "asc":
@@ -42,7 +43,7 @@ export class UserService {
             desc: order,
             after: nextCursor,
             before: prevCursor,
-            order: [sequelize.col(sortField)],
+            order: [sequelize.col(sortBy)],
             limit,
         });
 
