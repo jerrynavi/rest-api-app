@@ -40,7 +40,7 @@ npm start
 
 
 ## Try It
-* Open you're browser to [http://localhost:3000](http://localhost:3000)
+* Open your browser to [http://localhost:3000](http://localhost:3000)
 * Invoke the `/` endpoint 
   ```shell
   curl http://localhost:3000/
