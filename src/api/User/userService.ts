@@ -83,10 +83,7 @@ export class UserService {
      * @param {Object} data the data to be updated
      * @returns {(Object|null)} the updated user resource
      */
-    public updateUser = async (data: IUser): Promise<IUserModel> => {
-        if (!data.id) {
-            throw new AppError("Please specify the user resource you would like to modify");
-        }
+    public updateUser = async (id: number, data: IUser): Promise<IUserModel> => {
         if (data.username) {
             throw new AppError("Cannot change username");
         }
@@ -94,11 +91,11 @@ export class UserService {
             data.password = bcrypt.hashSync(data.password, 10);
         }
 
-        const updated = await UserModel.update(data, { where: { id: data.id } });
+        const updated = await UserModel.update(data, { where: { id } });
         if (!updated) {
             throw new AppError("Could not update user data");
         }
-        return this.getUser(data.id);
+        return this.getUser(id);
     }
 
     /**

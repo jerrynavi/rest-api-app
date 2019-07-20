@@ -1,8 +1,7 @@
-import Joi, { number } from "joi";
+import Joi from "joi";
 import { IUser } from "./IUser";
 
 export const UserValidationSchema = Joi.object().keys(<IUser> {
-    id: number(),
     username: Joi.string().regex(/^[a-zA-Z0-9._-]{3,16}$/i),
     password: Joi.string().min(6).max(32),
     email: Joi.string().email({minDomainAtoms: 2}),

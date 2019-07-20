@@ -45,8 +45,11 @@ export class UserController extends BaseController {
     /**
      * updates user data
      */
-    public updateUser = async (data: IUser) => {
-        const _user = await this._userService.updateUser(data);
+    public updateUser = async (id: number, data: IUser) => {
+        if (!id) {
+            throw new AppError("Please specify the user resource you would like to modify");
+        }
+        const _user = await this._userService.updateUser(id, data);
         return this.sendResponse(_user);
     }
 }

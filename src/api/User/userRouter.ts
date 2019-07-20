@@ -23,7 +23,7 @@ router.post("/", call(User.addUser, (req, _res, _next) => [req.body]));
 
 router.delete("/:id", call(User.deleteUser, (req, _res, _next) => [req.params.id]));
 
-router.put("/", call(User.updateUser, (req, _res, _next) => [req.body]));
+router.put("/:id", call(User.updateUser, (req, _res, _next) => [req.params.id, req.body]));
 
 router.get("/:id", call(User.getUser, (req, _res, _next) => [req.params.id]));
 
